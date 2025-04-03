@@ -16,13 +16,13 @@ mod color3;
 
 pub trait Operation {
     fn operation(
-        self, variant: Variant,
+        self, with: Variant,
         operation_fn_f32: OperationFn<f32>,
         operation_fn_i32: OperationFn<i32>
     ) -> Option<Variant>;
 }
 
-pub trait BasicOperations {
+pub trait BasicOperations where Self: Sized {
     fn pow(self, with: Variant) -> Option<Variant> 
     where
         Self: Sized + Operation 
@@ -91,33 +91,55 @@ macro_rules! match_basic_op {
     };
 }
 
-impl BasicOperations for Variant {
-    fn pow(self, with: Variant) -> Option<Variant> {
+impl BasicOperations for Variant where Self: Sized {
+    fn pow(self: Variant, with: Variant) -> Option<Variant>  {
         match_basic_op!(self, with, pow)
     }
 
-    fn div(self, with: Variant) -> Option<Variant> {
+    fn div(self: Variant, with: Variant) -> Option<Variant> {
         match_basic_op!(self, with, div)
     }
 
-    fn floor_div(self, with: Variant) -> Option<Variant> {
+    fn floor_div(self: Variant, with: Variant) -> Option<Variant> {
         match_basic_op!(self, with, floor_div)
     }
 
-    fn modulo(self, with: Variant) -> Option<Variant> {
+    fn modulo(self: Variant, with: Variant) -> Option<Variant> {
         match_basic_op!(self, with, modulo)
     }
 
-    fn mult(self, with: Variant) -> Option<Variant> {
+    fn mult(self: Variant, with: Variant) -> Option<Variant> {
         match_basic_op!(self, with, mult)
     }
 
-    fn add(self, with: Variant) -> Option<Variant> {
+    fn add(self: Variant, with: Variant) -> Option<Variant> {
         match_basic_op!(self, with, add)
     }
 
-    fn sub(self, with: Variant) -> Option<Variant> {
+    fn sub(self: Variant, with: Variant) -> Option<Variant> {
         match_basic_op!(self, with, sub)
+    }
+}
+
+impl Operation for Variant {
+    fn operation(
+        self, with: Variant,
+        operation_fn_f32: OperationFn<f32>,
+        operation_fn_i32: OperationFn<i32>
+    ) -> Option<Variant> {
+        match self {
+            Variant::Float32(left) => left.operation(with, operation_fn_f32, operation_fn_i32),
+            Variant::UDim(left) => left.operation(with, operation_fn_f32, operation_fn_i32),
+            Variant::UDim2(left) => left.operation(with, operation_fn_f32, operation_fn_i32),
+            Variant::Vector3(left) => left.operation(with, operation_fn_f32, operation_fn_i32),
+            Variant::Vector3int16(left) => left.operation(with, operation_fn_f32, operation_fn_i32),
+            Variant::CFrame(left) => left.operation(with, operation_fn_f32, operation_fn_i32),
+            Variant::Vector2(left) => left.operation(with, operation_fn_f32, operation_fn_i32),
+            Variant::Vector2int16(left) => left.operation(with, operation_fn_f32, operation_fn_i32),
+            Variant::Rect(left) => left.operation(with, operation_fn_f32, operation_fn_i32),
+            Variant::Color3(left) => left.operation(with, operation_fn_f32, operation_fn_i32),
+            _ => None
+        }
     }
 }
 
