@@ -73,6 +73,68 @@ pub trait BasicOperations {
     }
 }
 
+/*
+mod float32;
+mod udim;
+mod udim2;
+mod vec3;
+mod vec3i16;
+mod cframe;
+mod vec2;
+mod vec2i16;
+mod rect;
+mod color3;
+
+*/
+
+macro_rules! match_basic_op {
+    ($self:ident, $with:ident, $method:ident) => {
+        match $self {
+            Variant::Float32(left) => left.$method($with),
+            Variant::UDim(left) => left.$method($with),
+            Variant::UDim2(left) => left.$method($with),
+            Variant::Vector3(left) => left.$method($with),
+            Variant::Vector3int16(left) => left.$method($with),
+            Variant::CFrame(left) => left.$method($with),
+            Variant::Vector2(left) => left.$method($with),
+            Variant::Vector2int16(left) => left.$method($with),
+            Variant::Rect(left) => left.$method($with),
+            Variant::Color3(left) => left.$method($with),
+            _ => None
+        }
+    };
+}
+
+impl BasicOperations for Variant {
+    fn pow(self, with: Variant) -> Option<Variant> {
+        match_basic_op!(self, with, pow)
+    }
+
+    fn div(self, with: Variant) -> Option<Variant> {
+        match_basic_op!(self, with, div)
+    }
+
+    fn floor_div(self, with: Variant) -> Option<Variant> {
+        match_basic_op!(self, with, floor_div)
+    }
+
+    fn modulo(self, with: Variant) -> Option<Variant> {
+        match_basic_op!(self, with, modulo)
+    }
+
+    fn mult(self, with: Variant) -> Option<Variant> {
+        match_basic_op!(self, with, mult)
+    }
+
+    fn add(self, with: Variant) -> Option<Variant> {
+        match_basic_op!(self, with, add)
+    }
+
+    fn sub(self, with: Variant) -> Option<Variant> {
+        match_basic_op!(self, with, sub)
+    }
+}
+
 fn will_divide_by_zero<T: Num>(a: T, b: T) -> bool {
     a.is_zero() || b.is_zero()
 }
