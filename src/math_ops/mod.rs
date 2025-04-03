@@ -73,20 +73,6 @@ pub trait BasicOperations {
     }
 }
 
-/*
-mod float32;
-mod udim;
-mod udim2;
-mod vec3;
-mod vec3i16;
-mod cframe;
-mod vec2;
-mod vec2i16;
-mod rect;
-mod color3;
-
-*/
-
 macro_rules! match_basic_op {
     ($self:ident, $with:ident, $method:ident) => {
         match $self {
