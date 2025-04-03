@@ -172,7 +172,7 @@ dependencies = [
 
 [[package]]
 name = "rbx_types_ops"
-version = "0.0.3"
+version = "0.0.4"
 dependencies = [
  "num-traits",
  "rbx_types",

@@ -2,7 +2,7 @@ use rbx_types::{Rect, Variant, Vector2};
 use super::{BasicOperations, Operation, OperationFn};
 
 fn operation_rect_with_f32(
-    left: Rect, right: f32, 
+    left: &Rect, right: f32, 
     operation_fn_f32: &OperationFn<f32>
 ) -> Rect {
     let (left_min, left_max) = (left.min, left.max);
@@ -18,7 +18,7 @@ fn operation_rect_with_f32(
 }
 
 fn operation_rect_with_rect(
-    left: Rect, right: Rect, 
+    left: &Rect, right: &Rect, 
     operation_fn_f32: &OperationFn<f32>
 ) -> Rect {
     let (left_min, left_max) = (left.min, left.max);
@@ -36,13 +36,13 @@ fn operation_rect_with_rect(
 
 impl Operation for Rect {
     fn operation(
-        self, with: Variant,
+        &self, with: &Variant,
         operation_fn_f32: OperationFn<f32>,
         _operation_fn_i32: OperationFn<i32>
     ) -> Option<Variant> {
         match with {
             Variant::Rect(with) => Some(Variant::Rect(operation_rect_with_rect(self, with, &operation_fn_f32))),
-            Variant::Float32(with) => Some(Variant::Rect(operation_rect_with_f32(self, with, &operation_fn_f32))),
+            Variant::Float32(with) => Some(Variant::Rect(operation_rect_with_f32(self, *with, &operation_fn_f32))),
             _ => None
         }
     }

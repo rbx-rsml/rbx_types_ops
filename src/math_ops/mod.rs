@@ -16,56 +16,56 @@ mod color3;
 
 pub trait Operation {
     fn operation(
-        self, with: Variant,
+        &self, with: &Variant,
         operation_fn_f32: OperationFn<f32>,
         operation_fn_i32: OperationFn<i32>
     ) -> Option<Variant>;
 }
 
 pub trait BasicOperations where Self: Sized {
-    fn pow(self, with: Variant) -> Option<Variant> 
+    fn pow(&self, with: &Variant) -> Option<Variant> 
     where
         Self: Sized + Operation 
     {
         self.operation(with, pow_f32, pow_i32)
     }
 
-    fn div(self, with: Variant) -> Option<Variant>
+    fn div(&self, with: &Variant) -> Option<Variant>
     where
         Self: Sized + Operation 
     {
         self.operation(with, div, div)
     }
 
-    fn floor_div(self, with: Variant) -> Option<Variant>
+    fn floor_div(&self, with: &Variant) -> Option<Variant>
     where
         Self: Sized + Operation 
     {
         self.operation(with, floor_div, div)
     }
 
-    fn modulus(self, with: Variant) -> Option<Variant>
+    fn modulus(&self, with: &Variant) -> Option<Variant>
     where
         Self: Sized + Operation
     {
         self.operation(with, modulus, modulus)
     }
 
-    fn mult(self, with: Variant) -> Option<Variant>
+    fn mult(&self, with: &Variant) -> Option<Variant>
     where
         Self: Sized + Operation
     {
         self.operation(with, mult, mult)
     }
 
-    fn add(self, with: Variant) -> Option<Variant>
+    fn add(&self, with: &Variant) -> Option<Variant>
     where
         Self: Sized + Operation
     {
         self.operation(with, add, add)
     }
 
-    fn sub(self, with: Variant) -> Option<Variant>
+    fn sub(&self, with: &Variant) -> Option<Variant>
     where
         Self: Sized + Operation 
     {
@@ -76,54 +76,54 @@ pub trait BasicOperations where Self: Sized {
 macro_rules! match_basic_op {
     ($self:ident, $with:ident, $method:ident) => {
         match $self {
-            Variant::Float32(left) => left.$method($with),
-            Variant::UDim(left) => left.$method($with),
-            Variant::UDim2(left) => left.$method($with),
-            Variant::Vector3(left) => left.$method($with),
-            Variant::Vector3int16(left) => left.$method($with),
-            Variant::CFrame(left) => left.$method($with),
-            Variant::Vector2(left) => left.$method($with),
-            Variant::Vector2int16(left) => left.$method($with),
-            Variant::Rect(left) => left.$method($with),
-            Variant::Color3(left) => left.$method($with),
+            Variant::Float32(left) => left.$method(&$with),
+            Variant::UDim(left) => left.$method(&$with),
+            Variant::UDim2(left) => left.$method(&$with),
+            Variant::Vector3(left) => left.$method(&$with),
+            Variant::Vector3int16(left) => left.$method(&$with),
+            Variant::CFrame(left) => left.$method(&$with),
+            Variant::Vector2(left) => left.$method(&$with),
+            Variant::Vector2int16(left) => left.$method(&$with),
+            Variant::Rect(left) => left.$method(&$with),
+            Variant::Color3(left) => left.$method(&$with),
             _ => None
         }
     };
 }
 
 impl BasicOperations for Variant where Self: Sized {
-    fn pow(self: Variant, with: Variant) -> Option<Variant>  {
+    fn pow(self: &Variant, with: &Variant) -> Option<Variant>  {
         match_basic_op!(self, with, pow)
     }
 
-    fn div(self: Variant, with: Variant) -> Option<Variant> {
+    fn div(self: &Variant, with: &Variant) -> Option<Variant> {
         match_basic_op!(self, with, div)
     }
 
-    fn floor_div(self: Variant, with: Variant) -> Option<Variant> {
+    fn floor_div(self: &Variant, with: &Variant) -> Option<Variant> {
         match_basic_op!(self, with, floor_div)
     }
 
-    fn modulus(self: Variant, with: Variant) -> Option<Variant> {
+    fn modulus(self: &Variant, with: &Variant) -> Option<Variant> {
         match_basic_op!(self, with, modulus)
     }
 
-    fn mult(self: Variant, with: Variant) -> Option<Variant> {
+    fn mult(self: &Variant, with: &Variant) -> Option<Variant> {
         match_basic_op!(self, with, mult)
     }
 
-    fn add(self: Variant, with: Variant) -> Option<Variant> {
+    fn add(self: &Variant, with: &Variant) -> Option<Variant> {
         match_basic_op!(self, with, add)
     }
 
-    fn sub(self: Variant, with: Variant) -> Option<Variant> {
+    fn sub(self: &Variant, with: &Variant) -> Option<Variant> {
         match_basic_op!(self, with, sub)
     }
 }
 
 impl Operation for Variant {
     fn operation(
-        self, with: Variant,
+        &self, with: &Variant,
         operation_fn_f32: OperationFn<f32>,
         operation_fn_i32: OperationFn<i32>
     ) -> Option<Variant> {
