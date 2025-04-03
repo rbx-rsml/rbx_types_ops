@@ -44,7 +44,7 @@ pub trait BasicOperations where Self: Sized {
         self.operation(with, floor_div, div)
     }
 
-    fn modulo(self, with: Variant) -> Option<Variant>
+    fn modulus(self, with: Variant) -> Option<Variant>
     where
         Self: Sized + Operation
     {
@@ -104,8 +104,8 @@ impl BasicOperations for Variant where Self: Sized {
         match_basic_op!(self, with, floor_div)
     }
 
-    fn modulo(self: Variant, with: Variant) -> Option<Variant> {
-        match_basic_op!(self, with, modulo)
+    fn modulus(self: Variant, with: Variant) -> Option<Variant> {
+        match_basic_op!(self, with, modulus)
     }
 
     fn mult(self: Variant, with: Variant) -> Option<Variant> {
