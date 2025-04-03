@@ -1,0 +1,23 @@
+[package]
+name = "rbx_types_ops"
+version = "0.0.0"
+edition = "2021"
+description = "Adds operation methods to rbx_types."
+repository = "https://github.com/rbx-rsml/rbx-types-ops.git"
+readme = "README.md"
+license = "MIT"
+
+[dependencies]
+rbx_types = "2.0.0"
+num-traits = "0.2.19"
+
+[lib]
+name = "rbx_types_ops"
+path = "src/lib.rs"
+test = true
+doctest = true
+bench = true
+doc = true 
+harness = true
+edition = "2021"
+crate-type = ["lib"]

@@ -1,0 +1,7 @@
+/target
+
+/src/main.rs
+
+# MacOS file system clutter.
+._*
+.DS_STORE
