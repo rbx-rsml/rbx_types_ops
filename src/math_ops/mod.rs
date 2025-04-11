@@ -1,6 +1,4 @@
-use std::ops::Rem;
-
-use num_traits::{CheckedAdd, Float, Num, PrimInt};
+use num_traits::{Float, Num, PrimInt};
 use rbx_types::Variant;
 
 pub type OperationFn<N> = fn(N, N) -> N;

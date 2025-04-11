@@ -194,6 +194,12 @@ macro_rules! implement_from_to_method_for_datatypes {
                             _ => Variant::Color3(from)
                         }
                     },
+                    Variant::Color3uint8(from) => {
+                        match to {
+                            Variant::Color3uint8(to) => Variant::Color3uint8(from.$method_name(to, time)),
+                            _ => Variant::Color3uint8(from)
+                        }
+                    },
                     _ => self
                 }
             }
