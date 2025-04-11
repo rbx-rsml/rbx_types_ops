@@ -1,4 +1,4 @@
-use rbx_types::{Color3, Variant};
+use rbx_types::{Color3, Color3uint8, Variant};
 use super::{BasicOperations, Operation, OperationFn};
 
 fn operation_color3_with_f32(
@@ -9,6 +9,17 @@ fn operation_color3_with_f32(
         operation_fn_f32(left.r, right),
         operation_fn_f32(left.g, right),
         operation_fn_f32(left.b, right)
+    )
+}
+
+fn operation_color3_with_color3u8(
+    left: &Color3, right: &Color3uint8,
+    operation_fn_f32: &OperationFn<f32>
+) -> Color3 {
+    Color3::new(
+        operation_fn_f32(left.r, right.r as f32),
+        operation_fn_f32(left.g, right.g as f32),
+        operation_fn_f32(left.b, right.b as f32)
     )
 }
 
@@ -28,10 +39,12 @@ impl Operation for Color3 {
     fn operation(
         &self, with: &Variant,
         operation_fn_f32: OperationFn<f32>,
-        _operation_fn_i32: OperationFn<i32>
+        _operation_fn_i32: OperationFn<i32>,
+        _operation_fn_u8: OperationFn<u8>
     ) -> Option<Variant> {
         match with {
             Variant::Color3(with) => Some(Variant::Color3(operation_color3_with_color3(self, with, &operation_fn_f32))),
+            Variant::Color3uint8(with) => Some(Variant::Color3(operation_color3_with_color3u8(self, with, &operation_fn_f32))),
             Variant::Float32(with) => Some(Variant::Color3(operation_color3_with_f32(self, *with, &operation_fn_f32))),
             _ => None
         }

@@ -38,7 +38,8 @@ impl Operation for Vector3int16 {
     fn operation(
         &self, with: &Variant,
         operation_fn_f32: OperationFn<f32>,
-        _operation_fn_i32: OperationFn<i32>
+        _operation_fn_i32: OperationFn<i32>,
+        _operation_fn_u8: OperationFn<u8>
     ) -> Option<Variant> {
         match with {
             Variant::Vector3int16(with) => Some(Variant::Vector3int16(operation_vector3int16_with_vector3int16(self, with, &operation_fn_f32))),

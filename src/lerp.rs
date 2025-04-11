@@ -1,5 +1,5 @@
 use num_traits::Num;
-use rbx_types::{CFrame, Color3, Matrix3, Rect, UDim, UDim2, Vector2, Vector2int16, Vector3, Vector3int16, Variant};
+use rbx_types::{CFrame, Color3, Color3uint8, Matrix3, Rect, UDim, UDim2, Vector2, Vector2int16, Vector3, Vector3int16, Variant};
 
 macro_rules! implement_from_to_method_for_datatypes {
     ($trait_name:ident, $method_name:ident) => {
@@ -18,6 +18,12 @@ macro_rules! implement_from_to_method_for_datatypes {
         impl $trait_name for i16 {
             fn $method_name(self, to: &i16, time: f32) -> Self {
                 $method_name(self as f32, *to as f32, time) as i16
+            }
+        }
+
+        impl $trait_name for u8 {
+            fn $method_name(self, to: &u8, time: f32) -> Self {
+                $method_name(self as f32, *to as f32, time) as u8
             }
         }
         
@@ -108,6 +114,16 @@ macro_rules! implement_from_to_method_for_datatypes {
         impl $trait_name for Color3 {
             fn $method_name(self, to: &Color3, time: f32) -> Self {
                 Color3::new(
+                    self.r.$method_name(&to.r, time),
+                    self.g.$method_name(&to.g, time),
+                    self.b.$method_name(&to.b, time),
+                )
+            }
+        }
+
+        impl $trait_name for Color3uint8 {
+            fn $method_name(self, to: &Color3uint8, time: f32) -> Self {
+                Color3uint8::new(
                     self.r.$method_name(&to.r, time),
                     self.g.$method_name(&to.g, time),
                     self.b.$method_name(&to.b, time),

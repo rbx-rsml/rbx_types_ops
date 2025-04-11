@@ -1,4 +1,6 @@
-use num_traits::{Float, Num};
+use std::ops::Rem;
+
+use num_traits::{CheckedAdd, Float, Num, PrimInt};
 use rbx_types::Variant;
 
 pub type OperationFn<N> = fn(N, N) -> N;
@@ -13,12 +15,14 @@ mod vec2;
 mod vec2i16;
 mod rect;
 mod color3;
+mod color3u8;
 
 pub trait Operation {
     fn operation(
         &self, with: &Variant,
         operation_fn_f32: OperationFn<f32>,
-        operation_fn_i32: OperationFn<i32>
+        operation_fn_i32: OperationFn<i32>,
+        operation_fn_u8: OperationFn<u8>
     ) -> Option<Variant>;
 }
 
@@ -27,49 +31,49 @@ pub trait BasicOperations where Self: Sized {
     where
         Self: Sized + Operation 
     {
-        self.operation(with, pow_f32, pow_i32)
+        self.operation(with, pow_float, pow_int, pow_int)
     }
 
     fn div(&self, with: &Variant) -> Option<Variant>
     where
         Self: Sized + Operation 
     {
-        self.operation(with, div, div)
+        self.operation(with, div, div, div)
     }
 
     fn floor_div(&self, with: &Variant) -> Option<Variant>
     where
         Self: Sized + Operation 
     {
-        self.operation(with, floor_div, div)
+        self.operation(with, floor_div, div, div)
     }
 
     fn modulus(&self, with: &Variant) -> Option<Variant>
     where
         Self: Sized + Operation
     {
-        self.operation(with, modulus, modulus)
+        self.operation(with, modulus, modulus, modulus)
     }
 
     fn mult(&self, with: &Variant) -> Option<Variant>
     where
         Self: Sized + Operation
     {
-        self.operation(with, mult, mult)
+        self.operation(with, mult_float, mult_int, mult_int)
     }
 
     fn add(&self, with: &Variant) -> Option<Variant>
     where
         Self: Sized + Operation
     {
-        self.operation(with, add, add)
+        self.operation(with, add_float, add_int, add_int)
     }
 
     fn sub(&self, with: &Variant) -> Option<Variant>
     where
         Self: Sized + Operation 
     {
-        self.operation(with, sub, sub)
+        self.operation(with, sub_float, sub_int, sub_int)
     }
 }
 
@@ -125,46 +129,39 @@ impl Operation for Variant {
     fn operation(
         &self, with: &Variant,
         operation_fn_f32: OperationFn<f32>,
-        operation_fn_i32: OperationFn<i32>
-    ) -> Option<Variant> {
+        operation_fn_i32: OperationFn<i32>,
+        operation_fn_u8: OperationFn<u8>
+    ) -> Option<Variant> { 
         match self {
-            Variant::Float32(left) => left.operation(with, operation_fn_f32, operation_fn_i32),
-            Variant::UDim(left) => left.operation(with, operation_fn_f32, operation_fn_i32),
-            Variant::UDim2(left) => left.operation(with, operation_fn_f32, operation_fn_i32),
-            Variant::Vector3(left) => left.operation(with, operation_fn_f32, operation_fn_i32),
-            Variant::Vector3int16(left) => left.operation(with, operation_fn_f32, operation_fn_i32),
-            Variant::CFrame(left) => left.operation(with, operation_fn_f32, operation_fn_i32),
-            Variant::Vector2(left) => left.operation(with, operation_fn_f32, operation_fn_i32),
-            Variant::Vector2int16(left) => left.operation(with, operation_fn_f32, operation_fn_i32),
-            Variant::Rect(left) => left.operation(with, operation_fn_f32, operation_fn_i32),
-            Variant::Color3(left) => left.operation(with, operation_fn_f32, operation_fn_i32),
+            Variant::Float32(left) => left.operation(with, operation_fn_f32, operation_fn_i32, operation_fn_u8),
+            Variant::UDim(left) => left.operation(with, operation_fn_f32, operation_fn_i32, operation_fn_u8),
+            Variant::UDim2(left) => left.operation(with, operation_fn_f32, operation_fn_i32, operation_fn_u8),
+            Variant::Vector3(left) => left.operation(with, operation_fn_f32, operation_fn_i32, operation_fn_u8),
+            Variant::Vector3int16(left) => left.operation(with, operation_fn_f32, operation_fn_i32, operation_fn_u8),
+            Variant::CFrame(left) => left.operation(with, operation_fn_f32, operation_fn_i32, operation_fn_u8),
+            Variant::Vector2(left) => left.operation(with, operation_fn_f32, operation_fn_i32, operation_fn_u8),
+            Variant::Vector2int16(left) => left.operation(with, operation_fn_f32, operation_fn_i32, operation_fn_u8),
+            Variant::Rect(left) => left.operation(with, operation_fn_f32, operation_fn_i32, operation_fn_u8),
+            Variant::Color3(left) => left.operation(with, operation_fn_f32, operation_fn_i32, operation_fn_u8),
+            Variant::Color3uint8(left) => left.operation(with, operation_fn_f32, operation_fn_i32, operation_fn_u8),
             _ => None
         }
     }
 }
 
-fn will_divide_by_zero<T: Num>(a: T, b: T) -> bool {
-    a.is_zero() || b.is_zero()
-}
+pub fn pow_float<N: Float>(a: N, b: N) -> N { a.powf(b) }
+pub fn pow_int<N: PrimInt>(a: N, b: N) -> N { a.pow(b.to_u32().unwrap_or(u32::MAX)) }
 
-pub fn pow_f32(a: f32, b: f32) -> f32 { a.powf(b) }
+pub fn div<T: Num + Copy>(a: T, b: T) -> T { if a.is_zero() || b.is_zero() { a } else { a / b } }
+pub fn floor_div<T: Float>(a: T, b: T) -> T { if a.is_zero() || b.is_zero() { a } else { (a / b).floor() } }
 
-pub fn pow_i32(a: i32, b: i32) -> i32 { a.pow(b as u32) }
+pub fn modulus<T: Num>(a: T, b: T) -> T { if b.is_zero() { a } else { a % b } }
 
-pub fn div<T: Num + Copy>(a: T, b: T) -> T {
-    if  a.is_zero() || b.is_zero() { return a }
-    a / b
-}
+pub fn mult_float<T: Float>(a: T, b: T) -> T { a.mul(b) }
+pub fn mult_int<T: PrimInt>(a: T, b: T) -> T { a.checked_mul(&b).unwrap_or(T::max_value()) }
 
-pub fn floor_div<T: Float>(a: T, b: T) -> T {
-    if will_divide_by_zero(a, b) { return a }
-    (a / b).floor()
-}
+pub fn add_float<T: Float>(a: T, b: T) -> T { a.add(b) }
+pub fn add_int<T: PrimInt>(a: T, b: T) -> T { a.checked_add(&b).unwrap_or(T::max_value()) }
 
-pub fn modulus<T: Num>(a: T, b: T) -> T { a % b }
-
-pub fn mult<T: Num>(a: T, b: T) -> T { a * b }
-
-pub fn add<T: Num>(a: T, b: T) -> T { a + b }
-
-pub fn sub<T: Num>(a: T, b: T) -> T { a - b }
+pub fn sub_float<T: Float>(a: T, b: T) -> T { a.sub(b) }
+pub fn sub_int<T: PrimInt>(a: T, b: T) -> T { a.checked_sub(&b).unwrap_or(T::min_value()) }

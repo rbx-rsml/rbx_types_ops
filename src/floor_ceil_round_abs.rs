@@ -116,3 +116,8 @@ pub trait Round {
     fn round(self) -> Self;
 }
 implement_method_for_datatypes!(Round, round);
+
+pub trait Abs {
+    fn abs(self) -> Self;
+}
+implement_method_for_datatypes!(Abs, abs);

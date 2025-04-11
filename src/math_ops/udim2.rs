@@ -37,7 +37,8 @@ impl Operation for UDim2 {
     fn operation(
         &self, with: &Variant,
         operation_fn_f32: OperationFn<f32>,
-        operation_fn_i32: OperationFn<i32>
+        operation_fn_i32: OperationFn<i32>,
+        _operation_fn_u8: OperationFn<u8>
     ) -> Option<Variant> {
         match with {
             Variant::UDim2(with) => Some(Variant::UDim2(operation_udim2_with_udim2(self, with, &operation_fn_f32, &operation_fn_i32))),

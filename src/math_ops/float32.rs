@@ -1,5 +1,5 @@
 use rbx_types::{Color3, Rect, UDim, UDim2, Variant, Vector2, Vector2int16, Vector3, Vector3int16};
-use super::{sub, BasicOperations, Operation, OperationFn};
+use super::{BasicOperations, Operation, OperationFn};
 
 #[inline(always)]
 fn operation_f32_with_f32(
@@ -122,7 +122,8 @@ impl Operation for f32 {
     fn operation(
         &self, with: &Variant,
         operation_fn_f32: OperationFn<f32>,
-        _operation_fn_i32: OperationFn<i32>
+        _operation_fn_i32: OperationFn<i32>,
+        _operation_fn_u8: OperationFn<u8>
     ) -> Option<Variant> {
         match with {
             Variant::Float32(with) => Some(Variant::Float32(operation_f32_with_f32(*self,*with, &operation_fn_f32))),
@@ -144,7 +145,7 @@ impl BasicOperations for f32 {
         match with {
             Variant::UDim(with) => Some(Variant::UDim(operation_sub_f32_with_udim(*self, with))),
             Variant::UDim2(with) => Some(Variant::UDim2(operation_sub_f32_with_udim2(*self, with))),
-            _ => self.operation(with, sub, sub)
+            _ => self.sub(with)
         }
     }
 }

@@ -38,7 +38,8 @@ impl Operation for Rect {
     fn operation(
         &self, with: &Variant,
         operation_fn_f32: OperationFn<f32>,
-        _operation_fn_i32: OperationFn<i32>
+        _operation_fn_i32: OperationFn<i32>,
+        _operation_fn_u8: OperationFn<u8>
     ) -> Option<Variant> {
         match with {
             Variant::Rect(with) => Some(Variant::Rect(operation_rect_with_rect(self, with, &operation_fn_f32))),
