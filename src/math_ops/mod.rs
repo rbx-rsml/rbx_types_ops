@@ -70,7 +70,7 @@ pub trait BasicOperations where Self: Sized {
     fn sub(&self, with: &Variant) -> Option<Variant>
     where
         Self: Sized + Operation 
-    {
+    {   
         self.operation(with, sub_float, sub_int, sub_int)
     }
 }
