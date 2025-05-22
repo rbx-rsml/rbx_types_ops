@@ -1,0 +1,5 @@
+---
+source: src/math_ops/float32.rs
+expression: 16.2f32.floor_div(&5.23f32.into())
+---
+Float32: 3

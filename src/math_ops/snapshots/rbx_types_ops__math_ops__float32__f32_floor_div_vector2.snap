@@ -1,0 +1,7 @@
+---
+source: src/math_ops/float32.rs
+expression: "16.2f32.floor_div(&Vector2::new(5.0, 15.0).into())"
+---
+Vector2:
+  - 3
+  - 1

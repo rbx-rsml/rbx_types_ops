@@ -1,0 +1,9 @@
+---
+source: src/math_ops/float32.rs
+expression: "10.0f32.add(&UDim2::new(UDim::new(5.0, 32), UDim::new(5.0, 32)).into())"
+---
+UDim2:
+  - - 15
+    - 32
+  - - 15
+    - 32

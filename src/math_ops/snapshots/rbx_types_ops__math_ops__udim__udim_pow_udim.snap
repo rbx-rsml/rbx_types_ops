@@ -1,0 +1,7 @@
+---
+source: src/math_ops/udim.rs
+expression: "UDim::new(10.0, 16).pow(&UDim::new(5.0, 32).into())"
+---
+UDim:
+  - 100000
+  - 2147483647

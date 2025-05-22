@@ -1,0 +1,8 @@
+---
+source: src/math_ops/color3uint8.rs
+expression: "Color3uint8::new(255, 128, 51).modulus(&16.2f32.into())"
+---
+Color3uint8:
+  - 11
+  - 14
+  - 2

@@ -1,0 +1,7 @@
+---
+source: src/math_ops/udim.rs
+expression: "UDim::new(10.0, 32).mult(&10.0f32.into())"
+---
+UDim:
+  - 100
+  - 320

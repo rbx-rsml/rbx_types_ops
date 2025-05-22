@@ -1,0 +1,7 @@
+---
+source: src/math_ops/float32.rs
+expression: "5.0f32.pow(&Vector2::new(5.0, 15.0).into())"
+---
+Vector2:
+  - 3125
+  - 30517578000

@@ -1,0 +1,9 @@
+---
+source: src/math_ops/udim2.rs
+expression: "UDim2::new(UDim::new(5.0, 32), UDim::new(5.0, 32)).div(&10.0f32.into())"
+---
+UDim2:
+  - - 0.5
+    - 3
+  - - 0.5
+    - 3

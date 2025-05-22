@@ -1,0 +1,7 @@
+---
+source: src/math_ops/udim.rs
+expression: "UDim::new(10.0, 16).sub(&UDim::new(5.0, 32).into())"
+---
+UDim:
+  - 5
+  - -16

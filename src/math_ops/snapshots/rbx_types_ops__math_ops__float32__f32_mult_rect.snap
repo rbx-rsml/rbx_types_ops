@@ -1,0 +1,9 @@
+---
+source: src/math_ops/float32.rs
+expression: "10.0f32.mult(&Rect::new(Vector2::new(5.0, 10.0),\nVector2::new(15.0, 20.0)).into())"
+---
+Rect:
+  - - 50
+    - 100
+  - - 150
+    - 200

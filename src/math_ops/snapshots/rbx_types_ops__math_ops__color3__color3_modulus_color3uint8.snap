@@ -1,0 +1,8 @@
+---
+source: src/math_ops/color3.rs
+expression: "Color3::new(1.0, 0.5, 0.2).modulus(&Color3uint8::new(255, 128, 51).into())"
+---
+Color3:
+  - 0
+  - 0.5
+  - 0

@@ -1,0 +1,8 @@
+---
+source: src/math_ops/float32.rs
+expression: "5.0f32.pow(&Vector3int16::new(5, 10, 15).into())"
+---
+Vector3int16:
+  - 3125
+  - 32767
+  - 32767

@@ -1,0 +1,7 @@
+---
+source: src/math_ops/float32.rs
+expression: "5.0f32.sub(&UDim::new(10.0, 32).into())"
+---
+UDim:
+  - -5
+  - -32

@@ -1,0 +1,7 @@
+---
+source: src/math_ops/float32.rs
+expression: "16.2f32.modulus(&UDim::new(15.0, 32).into())"
+---
+UDim:
+  - 1.2000008
+  - 16

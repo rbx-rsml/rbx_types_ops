@@ -1,0 +1,9 @@
+---
+source: src/math_ops/float32.rs
+expression: "16.2f32.floor_div(&UDim2::new(UDim::new(5.23, 32),\nUDim::new(5.23, 32)).into())"
+---
+UDim2:
+  - - 3
+    - 0
+  - - 3
+    - 0

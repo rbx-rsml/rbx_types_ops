@@ -1,0 +1,7 @@
+---
+source: src/math_ops/float32.rs
+expression: "5.0f32.sub(&Vector2int16::new(5, 15).into())"
+---
+Vector2int16:
+  - 0
+  - -10

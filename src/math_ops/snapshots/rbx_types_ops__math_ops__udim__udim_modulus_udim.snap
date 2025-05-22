@@ -1,0 +1,7 @@
+---
+source: src/math_ops/udim.rs
+expression: "UDim::new(15.0, 16).modulus(&UDim::new(16.2, 32).into())"
+---
+UDim:
+  - 15
+  - 16

@@ -1,0 +1,8 @@
+---
+source: src/math_ops/float32.rs
+expression: "10.0f32.div(&Vector3int16::new(5, 10, 15).into())"
+---
+Vector3int16:
+  - 2
+  - 1
+  - 0

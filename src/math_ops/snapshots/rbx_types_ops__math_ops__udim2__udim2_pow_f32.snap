@@ -1,0 +1,9 @@
+---
+source: src/math_ops/udim2.rs
+expression: "UDim2::new(UDim::new(10.0, 32), UDim::new(10.0, 32)).pow(&5.0f32.into())"
+---
+UDim2:
+  - - 100000
+    - 33554432
+  - - 100000
+    - 33554432

@@ -1,0 +1,7 @@
+---
+source: src/math_ops/float32.rs
+expression: "16.2f32.modulus(&Vector2::new(5.0, 15.0).into())"
+---
+Vector2:
+  - 1.2000008
+  - 1.2000008

@@ -1,0 +1,19 @@
+---
+source: src/math_ops/cframe.rs
+expression: "CFrame::new(Vector3::new(5.0, 10.0, 15.0),\nMatrix3::new(Vector3::new(6.0, 12.0, 18.0), Vector3::new(6.0, 12.0, 18.0),\nVector3::new(6.0, 12.0,\n18.0))).pow(&CFrame::new(Vector3::new(5.0, 10.0, 15.0),\nMatrix3::new(Vector3::new(6.0, 12.0, 18.0), Vector3::new(6.0, 12.0, 18.0),\nVector3::new(6.0, 12.0, 18.0))).into())"
+---
+CFrame:
+  position:
+    - 3125
+    - 10000000000
+    - 437893900000000000
+  orientation:
+    - - 46656
+      - 8916100000000
+      - 39346410000000000000000
+    - - 46656
+      - 8916100000000
+      - 39346410000000000000000
+    - - 46656
+      - 8916100000000
+      - 39346410000000000000000

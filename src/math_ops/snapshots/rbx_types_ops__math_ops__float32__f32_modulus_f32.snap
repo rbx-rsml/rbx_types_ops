@@ -1,0 +1,5 @@
+---
+source: src/math_ops/float32.rs
+expression: 16.2f32.modulus(&15.0f32.into())
+---
+Float32: 1.2000008

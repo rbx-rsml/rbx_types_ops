@@ -1,4 +1,4 @@
-use num_traits::{Float, Num, PrimInt};
+use num_traits::{checked_pow, Float, Num, PrimInt};
 use rbx_types::Variant;
 
 pub type OperationFn<N> = fn(N, N) -> N;
@@ -7,13 +7,13 @@ mod float32;
 mod udim;
 mod udim2;
 mod vec3;
-mod vec3i16;
+mod vec3int16;
 mod cframe;
 mod vec2;
-mod vec2i16;
+mod vec2int16;
 mod rect;
 mod color3;
-mod color3u8;
+mod color3uint8;
 
 pub trait Operation {
     fn operation(
@@ -148,18 +148,20 @@ impl Operation for Variant {
 }
 
 pub fn pow_float<N: Float>(a: N, b: N) -> N { a.powf(b) }
-pub fn pow_int<N: PrimInt>(a: N, b: N) -> N { a.pow(b.to_u32().unwrap_or(u32::MAX)) }
+pub fn pow_int<N: PrimInt>(a: N, b: N) -> N {
+    checked_pow(a, b.to_usize().unwrap_or(usize::MAX)).unwrap_or(N::max_value())
+}
 
-pub fn div<T: Num + Copy>(a: T, b: T) -> T { if a.is_zero() || b.is_zero() { a } else { a / b } }
-pub fn floor_div<T: Float>(a: T, b: T) -> T { if a.is_zero() || b.is_zero() { a } else { (a / b).floor() } }
+pub fn div<N: Num + Copy>(a: N, b: N) -> N { if a.is_zero() || b.is_zero() { N::zero() } else { a / b } }
+pub fn floor_div<N: Float>(a: N, b: N) -> N { if a.is_zero() || b.is_zero() { N::zero() } else { (a / b).floor() } }
 
 pub fn modulus<T: Num>(a: T, b: T) -> T { if b.is_zero() { a } else { a % b } }
 
-pub fn mult_float<T: Float>(a: T, b: T) -> T { a.mul(b) }
-pub fn mult_int<T: PrimInt>(a: T, b: T) -> T { a.checked_mul(&b).unwrap_or(T::max_value()) }
+pub fn mult_float<N: Float>(a: N, b: N) -> N { a.mul(b) }
+pub fn mult_int<N: PrimInt>(a: N, b: N) -> N { a.checked_mul(&b).unwrap_or(N::max_value()) }
 
-pub fn add_float<T: Float>(a: T, b: T) -> T { a.add(b) }
-pub fn add_int<T: PrimInt>(a: T, b: T) -> T { a.checked_add(&b).unwrap_or(T::max_value()) }
+pub fn add_float<N: Float>(a: N, b: N) -> N { a.add(b) }
+pub fn add_int<N: PrimInt>(a: N, b: N) -> N { a.checked_add(&b).unwrap_or(N::max_value()) }
 
-pub fn sub_float<T: Float>(a: T, b: T) -> T { a.sub(b) }
-pub fn sub_int<T: PrimInt>(a: T, b: T) -> T { a.checked_sub(&b).unwrap_or(T::min_value()) }
+pub fn sub_float<N: Float>(a: N, b: N) -> N { a.sub(b) }
+pub fn sub_int<N: PrimInt>(a: N, b: N) -> N { a.checked_sub(&b).unwrap_or(N::min_value()) }

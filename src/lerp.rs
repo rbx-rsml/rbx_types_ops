@@ -1,5 +1,5 @@
 use num_traits::Num;
-use rbx_types::{CFrame, Color3, Color3uint8, Matrix3, Rect, UDim, UDim2, Vector2, Vector2int16, Vector3, Vector3int16, Variant};
+use rbx_types::{CFrame, Color3, Color3uint8, Matrix3, Rect, UDim, UDim2, Variant, Vector2, Vector2int16, Vector3, Vector3int16};
 
 macro_rules! implement_from_to_method_for_datatypes {
     ($trait_name:ident, $method_name:ident) => {

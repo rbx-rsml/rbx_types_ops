@@ -1,4 +1,4 @@
-use rbx_types::{CFrame, Matrix3, Variant};
+use rbx_types::{CFrame, Matrix3, Variant, Vector3};
 use super::{BasicOperations, Operation, OperationFn};
 
 use super::vec3::operation_vector3_with_vector3;
@@ -35,3 +35,110 @@ impl Operation for CFrame {
 }
 
 impl BasicOperations for CFrame {}
+
+
+// cframe && cframe
+#[test]
+fn test_cframe_pow_cframe() {
+    insta::assert_yaml_snapshot!(
+        CFrame::new(Vector3::new(5.0, 10.0, 15.0), Matrix3::new(
+            Vector3::new(6.0, 12.0, 18.0),
+            Vector3::new(6.0, 12.0, 18.0),
+            Vector3::new(6.0, 12.0, 18.0)
+        )).pow(&CFrame::new(Vector3::new(5.0, 10.0, 15.0), Matrix3::new(
+            Vector3::new(6.0, 12.0, 18.0),
+            Vector3::new(6.0, 12.0, 18.0),
+            Vector3::new(6.0, 12.0, 18.0)
+        )).into())
+    )
+}
+
+#[test]
+fn test_cframe_div_cframe() {
+    insta::assert_yaml_snapshot!(
+        CFrame::new(Vector3::new(5.0, 10.0, 15.0), Matrix3::new(
+            Vector3::new(6.0, 12.0, 18.0),
+            Vector3::new(6.0, 12.0, 18.0),
+            Vector3::new(6.0, 12.0, 18.0)
+        )).div(&CFrame::new(Vector3::new(5.0, 10.0, 15.0), Matrix3::new(
+            Vector3::new(6.0, 12.0, 18.0),
+            Vector3::new(6.0, 12.0, 18.0),
+            Vector3::new(6.0, 12.0, 18.0)
+        )).into())
+    )
+}
+
+#[test]
+fn test_cframe_floor_div_cframe() {
+    insta::assert_yaml_snapshot!(
+        CFrame::new(Vector3::new(5.0, 10.0, 15.0), Matrix3::new(
+            Vector3::new(6.0, 12.0, 18.0),
+            Vector3::new(6.0, 12.0, 18.0),
+            Vector3::new(6.0, 12.0, 18.0)
+        )).floor_div(&CFrame::new(Vector3::new(5.0, 10.0, 15.0), Matrix3::new(
+            Vector3::new(6.0, 12.0, 18.0),
+            Vector3::new(6.0, 12.0, 18.0),
+            Vector3::new(6.0, 12.0, 18.0)
+        )).into())
+    )
+}
+
+#[test]
+fn test_cframe_modulus_cframe() {
+    insta::assert_yaml_snapshot!(
+        CFrame::new(Vector3::new(5.0, 10.0, 15.0), Matrix3::new(
+            Vector3::new(6.0, 12.0, 18.0),
+            Vector3::new(6.0, 12.0, 18.0),
+            Vector3::new(6.0, 12.0, 18.0)
+        )).modulus(&CFrame::new(Vector3::new(5.0, 10.0, 15.0), Matrix3::new(
+            Vector3::new(6.0, 12.0, 18.0),
+            Vector3::new(6.0, 12.0, 18.0),
+            Vector3::new(6.0, 12.0, 18.0)
+        )).into())
+    )
+}
+
+#[test]
+fn test_cframe_mult_cframe() {
+    insta::assert_yaml_snapshot!(
+        CFrame::new(Vector3::new(5.0, 10.0, 15.0), Matrix3::new(
+            Vector3::new(6.0, 12.0, 18.0),
+            Vector3::new(6.0, 12.0, 18.0),
+            Vector3::new(6.0, 12.0, 18.0)
+        )).mult(&CFrame::new(Vector3::new(5.0, 10.0, 15.0), Matrix3::new(
+            Vector3::new(6.0, 12.0, 18.0),
+            Vector3::new(6.0, 12.0, 18.0),
+            Vector3::new(6.0, 12.0, 18.0)
+        )).into())
+    )
+}
+
+#[test]
+fn test_cframe_add_cframe() {
+    insta::assert_yaml_snapshot!(
+        CFrame::new(Vector3::new(5.0, 10.0, 15.0), Matrix3::new(
+            Vector3::new(6.0, 12.0, 18.0),
+            Vector3::new(6.0, 12.0, 18.0),
+            Vector3::new(6.0, 12.0, 18.0)
+        )).add(&CFrame::new(Vector3::new(5.0, 10.0, 15.0), Matrix3::new(
+            Vector3::new(6.0, 12.0, 18.0),
+            Vector3::new(6.0, 12.0, 18.0),
+            Vector3::new(6.0, 12.0, 18.0)
+        )).into())
+    )
+}
+
+#[test]
+fn test_cframe_sub_cframe() {
+    insta::assert_yaml_snapshot!(
+        CFrame::new(Vector3::new(5.0, 10.0, 15.0), Matrix3::new(
+            Vector3::new(6.0, 12.0, 18.0),
+            Vector3::new(6.0, 12.0, 18.0),
+            Vector3::new(6.0, 12.0, 18.0)
+        )).sub(&CFrame::new(Vector3::new(5.0, 10.0, 15.0), Matrix3::new(
+            Vector3::new(6.0, 12.0, 18.0),
+            Vector3::new(6.0, 12.0, 18.0),
+            Vector3::new(6.0, 12.0, 18.0)
+        )).into())
+    )
+}

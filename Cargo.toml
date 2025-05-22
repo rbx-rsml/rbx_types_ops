@@ -1,6 +1,6 @@
 [package]
 name = "rbx_types_ops"
-version = "0.0.7"
+version = "0.0.8"
 edition = "2021"
 description = "Adds operation methods to rbx_types."
 repository = "https://github.com/rbx-rsml/rbx_types_ops"
@@ -21,3 +21,10 @@ doc = true
 harness = true
 edition = "2021"
 crate-type = ["lib"]
+
+[dev-dependencies]
+insta = { version = "1.43.1", features = ["yaml"] }
+
+[profile.dev.package]
+insta.opt-level = 3
+similar.opt-level = 3

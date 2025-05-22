@@ -1,0 +1,7 @@
+---
+source: src/math_ops/udim.rs
+expression: "UDim::new(5.23, 16).floor_div(&UDim::new(16.2, 32).into())"
+---
+UDim:
+  - 0
+  - 0

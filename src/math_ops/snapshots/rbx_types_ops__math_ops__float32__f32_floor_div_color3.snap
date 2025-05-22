@@ -1,0 +1,8 @@
+---
+source: src/math_ops/float32.rs
+expression: "16.2f32.floor_div(&Color3::new(1.0, 0.5, 0.2).into())"
+---
+Color3:
+  - 16
+  - 32
+  - 81

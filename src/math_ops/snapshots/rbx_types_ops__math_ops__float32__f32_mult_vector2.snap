@@ -1,0 +1,7 @@
+---
+source: src/math_ops/float32.rs
+expression: "10.0f32.mult(&Vector2::new(5.0, 15.0).into())"
+---
+Vector2:
+  - 50
+  - 150

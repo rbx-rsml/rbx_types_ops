@@ -1,0 +1,9 @@
+---
+source: src/math_ops/udim2.rs
+expression: "UDim2::new(UDim::new(10.0, 32),\nUDim::new(10.0,\n32)).mult(&UDim2::new(UDim::new(10.0, 32), UDim::new(10.0, 32)).into())"
+---
+UDim2:
+  - - 100
+    - 1024
+  - - 100
+    - 1024

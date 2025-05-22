@@ -1,0 +1,8 @@
+---
+source: src/math_ops/color3uint8.rs
+expression: "Color3uint8::new(255, 128, 51).div(&10.0f32.into())"
+---
+Color3uint8:
+  - 25
+  - 12
+  - 5
