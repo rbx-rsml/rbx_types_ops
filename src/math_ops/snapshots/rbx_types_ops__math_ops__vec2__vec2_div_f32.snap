@@ -1,0 +1,7 @@
+---
+source: src/math_ops/vec2.rs
+expression: "Vector2::new(15.0, 15.0).div(&5f32.into())"
+---
+Vector2:
+  - 3
+  - 3

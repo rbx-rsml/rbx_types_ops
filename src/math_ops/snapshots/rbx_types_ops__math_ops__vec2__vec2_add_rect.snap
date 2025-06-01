@@ -1,0 +1,9 @@
+---
+source: src/math_ops/vec2.rs
+expression: "Vector2::new(175.0,\n5.0).add(&Rect::new(Vector2::new(5.0, 10.0), Vector2::new(5.0, 10.0)).into())"
+---
+Rect:
+  - - 180
+    - 15
+  - - 180
+    - 15

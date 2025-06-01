@@ -1,0 +1,7 @@
+---
+source: src/math_ops/vec2int16.rs
+expression: "Vector2int16::new(15, 15).mult(&Vector2int16::new(5, 10).into())"
+---
+Vector2int16:
+  - 75
+  - 150

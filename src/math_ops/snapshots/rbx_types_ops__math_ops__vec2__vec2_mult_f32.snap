@@ -1,0 +1,7 @@
+---
+source: src/math_ops/vec2.rs
+expression: "Vector2::new(15.0, 15.0).mult(&5f32.into())"
+---
+Vector2:
+  - 75
+  - 75

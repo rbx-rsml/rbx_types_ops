@@ -1,0 +1,19 @@
+---
+source: src/floor_ceil_round_abs.rs
+expression: "Variant::from(CFrame::new(Vector3::new(5.2, 10.8, 15.2),\nMatrix3::new(Vector3::new(6.6, 12.7, 18.2), Vector3::new(6.6, 12.7, 18.2),\nVector3::new(6.6, 12.7, 18.2)))).floor()"
+---
+CFrame:
+  position:
+    - 5
+    - 10
+    - 15
+  orientation:
+    - - 6
+      - 12
+      - 18
+    - - 6
+      - 12
+      - 18
+    - - 6
+      - 12
+      - 18

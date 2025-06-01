@@ -1,0 +1,7 @@
+---
+source: src/math_ops/vec2.rs
+expression: "Vector2::new(15.0, 15.0).pow(&Vector2int16::new(5, 10).into())"
+---
+Vector2:
+  - 759375
+  - 576650400000

@@ -1,0 +1,9 @@
+---
+source: src/math_ops/vec2.rs
+expression: "Vector2::new(175.0,\n5.0).div(&Rect::new(Vector2::new(5.0, 10.0), Vector2::new(5.0, 10.0)).into())"
+---
+Rect:
+  - - 35
+    - 0.5
+  - - 35
+    - 0.5

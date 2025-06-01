@@ -1,0 +1,8 @@
+---
+source: src/math_ops/vec3int16.rs
+expression: "Vector3int16::new(15, 15, 15).mult(&5f32.into())"
+---
+Vector3int16:
+  - 75
+  - 75
+  - 75

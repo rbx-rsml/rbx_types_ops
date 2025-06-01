@@ -1,0 +1,5 @@
+---
+source: src/lerp.rs
+expression: "Variant::from(10f32).lerp(&Variant::from(20.0f32), 0.789)"
+---
+Float32: 17.89

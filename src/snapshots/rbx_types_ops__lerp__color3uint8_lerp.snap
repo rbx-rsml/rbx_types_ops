@@ -1,0 +1,8 @@
+---
+source: src/lerp.rs
+expression: "Variant::from(Color3uint8::new(10, 10,\n10)).lerp(&Variant::from(Color3uint8::new(20, 20, 20)), 0.789)"
+---
+Color3uint8:
+  - 17
+  - 17
+  - 17

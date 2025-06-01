@@ -1,0 +1,9 @@
+---
+source: src/math_ops/vec2int16.rs
+expression: "Vector2int16::new(175,\n5).modulus(&Rect::new(Vector2::new(5.0, 10.0),\nVector2::new(5.0, 10.0)).into())"
+---
+Rect:
+  - - 0
+    - 5
+  - - 0
+    - 5

@@ -51,3 +51,154 @@ impl Operation for Vector3 {
 }
 
 impl BasicOperations for Vector3 {}
+
+
+// vec3 && vec3
+#[test]
+fn test_vec3_pow_vec3() {
+    insta::assert_yaml_snapshot!(
+        Vector3::new(15.0, 15.0, 15.0).pow(&Vector3::new(5.0, 10.0, 5.0).into())
+    )
+}
+
+#[test]
+fn test_vec3_div_vec3() {
+    insta::assert_yaml_snapshot!(
+        Vector3::new(15.0, 15.0, 15.0).div(&Vector3::new(5.0, 10.0, 5.0).into())
+    )
+}
+
+#[test]
+fn test_vec3_floor_div_vec3() {
+    insta::assert_yaml_snapshot!(
+        Vector3::new(15.0, 15.0, 15.0).floor_div(&Vector3::new(5.0, 10.0, 5.0).into())
+    )
+}
+
+#[test]
+fn test_vec3_modulus_vec3() {
+    insta::assert_yaml_snapshot!(
+        Vector3::new(15.0, 15.0, 15.0).modulus(&Vector3::new(5.0, 10.0, 5.0).into())
+    )
+}
+
+#[test]
+fn test_vec3_mult_vec3() {
+    insta::assert_yaml_snapshot!(
+        Vector3::new(15.0, 15.0, 15.0).mult(&Vector3::new(5.0, 10.0, 5.0).into())
+    )
+}
+
+#[test]
+fn test_vec3_add_vec3() {
+    insta::assert_yaml_snapshot!(
+        Vector3::new(15.0, 15.0, 15.0).add(&Vector3::new(5.0, 10.0, 5.0).into())
+    )
+}
+
+#[test]
+fn test_vec3_sub_vec3() {
+    insta::assert_yaml_snapshot!(
+        Vector3::new(15.0, 15.0, 15.0).sub(&Vector3::new(5.0, 10.0, 5.0).into())
+    )
+}
+
+// vec3 && vec3int16
+#[test]
+fn test_vec3_pow_vec3int16() {
+    insta::assert_yaml_snapshot!(
+        Vector3::new(15.0, 15.0, 15.0).pow(&Vector3int16::new(5, 10, 5).into())
+    )
+}
+
+#[test]
+fn test_vec3_div_vec3int16() {
+    insta::assert_yaml_snapshot!(
+        Vector3::new(15.0, 15.0, 15.0).div(&Vector3int16::new(5, 10, 5).into())
+    )
+}
+
+#[test]
+fn test_vec3_floor_div_vec3int16() {
+    insta::assert_yaml_snapshot!(
+        Vector3::new(15.0, 15.0, 15.0).floor_div(&Vector3int16::new(5, 10, 5).into())
+    )
+}
+
+#[test]
+fn test_vec3_modulus_vec3int16() {
+    insta::assert_yaml_snapshot!(
+        Vector3::new(15.0, 15.0, 15.0).modulus(&Vector3int16::new(5, 10, 5).into())
+    )
+}
+
+#[test]
+fn test_vec3_mult_vec3int16() {
+    insta::assert_yaml_snapshot!(
+        Vector3::new(15.0, 15.0, 15.0).mult(&Vector3int16::new(5, 10, 5).into())
+    )
+}
+
+#[test]
+fn test_vec3_add_vec3int16() {
+    insta::assert_yaml_snapshot!(
+        Vector3::new(15.0, 15.0, 15.0).add(&Vector3int16::new(5, 10, 5).into())
+    )
+}
+
+#[test]
+fn test_vec3_sub_vec3int16() {
+    insta::assert_yaml_snapshot!(
+        Vector3::new(15.0, 15.0, 15.0).sub(&Vector3int16::new(5, 10, 5).into())
+    )
+}
+
+// vec3 && f32
+#[test]
+fn test_vec3_pow_f32() {
+    insta::assert_yaml_snapshot!(
+        Vector3::new(15.0, 15.0, 15.0).pow(&5f32.into())
+    )
+}
+
+#[test]
+fn test_vec3_div_f32() {
+    insta::assert_yaml_snapshot!(
+        Vector3::new(15.0, 15.0, 15.0).div(&5f32.into())
+    )
+}
+
+#[test]
+fn test_vec3_floor_div_f32() {
+    insta::assert_yaml_snapshot!(
+        Vector3::new(15.0, 15.0, 15.0).floor_div(&5f32.into())
+    )
+}
+
+#[test]
+fn test_vec3_modulus_f32() {
+    insta::assert_yaml_snapshot!(
+        Vector3::new(15.0, 15.0, 15.0).modulus(&5f32.into())
+    )
+}
+
+#[test]
+fn test_vec3_mult_f32() {
+    insta::assert_yaml_snapshot!(
+        Vector3::new(15.0, 15.0, 15.0).mult(&5f32.into())
+    )
+}
+
+#[test]
+fn test_vec3_add_f32() {
+    insta::assert_yaml_snapshot!(
+        Vector3::new(15.0, 15.0, 15.0).add(&5f32.into())
+    )
+}
+
+#[test]
+fn test_vec3_sub_f32() {
+    insta::assert_yaml_snapshot!(
+        Vector3::new(15.0, 15.0, 15.0).sub(&5f32.into())
+    )
+}

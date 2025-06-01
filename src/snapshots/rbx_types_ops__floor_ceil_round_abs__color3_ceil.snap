@@ -1,0 +1,8 @@
+---
+source: src/floor_ceil_round_abs.rs
+expression: "Variant::from(Color3::new(5.2, 8.4, 3.7)).ceil()"
+---
+Color3:
+  - 6
+  - 9
+  - 4

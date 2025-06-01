@@ -214,3 +214,114 @@ pub trait Lerp {
     fn lerp(self, to: &Self, time: f32) -> Self;
 }
 implement_from_to_method_for_datatypes!(Lerp, lerp);
+
+
+#[test]
+fn test_f32_lerp() {
+    insta::assert_yaml_snapshot!(
+        Variant::from(10f32).lerp(&Variant::from(20.0f32), 0.789)
+    )
+}
+
+#[test]
+fn test_udim_lerp() {
+    insta::assert_yaml_snapshot!(
+        Variant::from(UDim::new(10.0, 10)).lerp(&Variant::from(UDim::new(20.0, 20)), 0.789)
+    )
+}
+
+#[test]
+fn test_udim2_lerp() {
+    insta::assert_yaml_snapshot!(
+        Variant::from(UDim2::new(UDim::new(10.0, 10), UDim::new(10.0, 10)))
+            .lerp(&Variant::from(UDim2::new(UDim::new(20.0, 20), UDim::new(20.0, 20))), 0.789)
+    )
+}
+
+#[test]
+fn test_rect_lerp() {
+    insta::assert_yaml_snapshot!(
+        Variant::from(Rect::new(Vector2::new(10.0, 10.0), Vector2::new(10.0, 10.0)))
+            .lerp(&Variant::from(Rect::new(Vector2::new(20.0, 20.0), Vector2::new(20.0, 20.0))), 0.789)
+    )
+}
+
+#[test]
+fn test_vector2_lerp() {
+    insta::assert_yaml_snapshot!(
+        Variant::from(Vector2::new(10.0, 10.0))
+            .lerp(&Variant::from(Vector2::new(20.0, 20.0)), 0.789)
+    )
+}
+
+#[test]
+fn test_vector2int16_lerp() {
+    insta::assert_yaml_snapshot!(
+        Variant::from(Vector2int16::new(10, 10))
+            .lerp(&Variant::from(Vector2int16::new(20, 20)), 0.789)
+    )
+}
+
+#[test]
+fn test_vector3_lerp() {
+    insta::assert_yaml_snapshot!(
+        Variant::from(Vector3::new(10.0, 10.0, 10.0))
+            .lerp(&Variant::from(Vector3::new(20.0, 20.0, 20.0)), 0.789)
+    )
+}
+
+#[test]
+fn test_vector3int16_lerp() {
+    insta::assert_yaml_snapshot!(
+        Variant::from(Vector3int16::new(10, 10, 10))
+            .lerp(&Variant::from(Vector3int16::new(20, 20, 20)), 0.789)
+    )
+}
+
+#[test]
+fn test_cframe_lerp() {
+    insta::assert_yaml_snapshot!(
+        Variant::from(CFrame::new(Vector3::new(10.0, 10.0, 10.0), Matrix3::new(
+            Vector3::new(10.0, 10.0, 10.0),
+            Vector3::new(10.0, 10.0, 10.0),
+            Vector3::new(10.0, 10.0, 10.0)
+        )))
+            .lerp(&Variant::from(CFrame::new(Vector3::new(20.0, 20.0, 20.0), Matrix3::new(
+                Vector3::new(20.0, 20.0, 20.0),
+                Vector3::new(20.0, 20.0, 20.0),
+                Vector3::new(20.0, 20.0, 20.0)
+            ))), 0.789)
+    )
+}
+
+#[test]
+fn test_matrix3_lerp() {
+    insta::assert_yaml_snapshot!(
+        Matrix3::new(
+            Vector3::new(10.0, 10.0, 10.0),
+            Vector3::new(10.0, 10.0, 10.0),
+            Vector3::new(10.0, 10.0, 10.0)
+        )
+            .lerp(&Matrix3::new(
+                Vector3::new(20.0, 20.0, 20.0),
+                Vector3::new(20.0, 20.0, 20.0),
+                Vector3::new(20.0, 20.0, 20.0)
+            ), 0.789)
+    )
+}
+
+#[test]
+fn test_color3_lerp() {
+    insta::assert_yaml_snapshot!(
+         Variant::from(Color3::new(10.0, 10.0, 10.0))
+            .lerp(&Variant::from(Color3::new(20.0, 20.0, 20.0)), 0.789)
+    )
+}
+
+#[test]
+fn test_color3uint8_lerp() {
+    insta::assert_yaml_snapshot!(
+         Variant::from(Color3uint8::new(10, 10, 10))
+            .lerp(&Variant::from(Color3uint8::new(20, 20, 20)), 0.789)
+    )
+}

@@ -1,0 +1,8 @@
+---
+source: src/floor_ceil_round_abs.rs
+expression: "Variant::from(Vector3int16::new(5, 8, 4)).round()"
+---
+Vector3int16:
+  - 5
+  - 8
+  - 4

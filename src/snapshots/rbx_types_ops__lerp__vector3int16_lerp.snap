@@ -1,0 +1,8 @@
+---
+source: src/lerp.rs
+expression: "Variant::from(Vector3int16::new(10, 10,\n10)).lerp(&Variant::from(Vector3int16::new(20, 20, 20)), 0.789)"
+---
+Vector3int16:
+  - 17
+  - 17
+  - 17

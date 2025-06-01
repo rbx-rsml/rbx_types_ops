@@ -1,0 +1,9 @@
+---
+source: src/math_ops/vec2.rs
+expression: "Vector2::new(175.0,\n5.0).pow(&Rect::new(Vector2::new(5.0, 10.0), Vector2::new(5.0, 10.0)).into())"
+---
+Rect:
+  - - 164130870000
+    - 9765625
+  - - 164130870000
+    - 9765625

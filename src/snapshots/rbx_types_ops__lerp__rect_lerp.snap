@@ -1,0 +1,9 @@
+---
+source: src/lerp.rs
+expression: "Variant::from(Rect::new(Vector2::new(10.0, 10.0),\nVector2::new(10.0,\n10.0))).lerp(&Variant::from(Rect::new(Vector2::new(20.0, 20.0),\nVector2::new(20.0, 20.0))), 0.789)"
+---
+Rect:
+  - - 17.89
+    - 17.89
+  - - 17.89
+    - 17.89

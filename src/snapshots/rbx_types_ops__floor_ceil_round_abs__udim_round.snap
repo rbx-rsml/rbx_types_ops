@@ -1,0 +1,7 @@
+---
+source: src/floor_ceil_round_abs.rs
+expression: "Variant::from(UDim::new(10.5, 15)).round()"
+---
+UDim:
+  - 11
+  - 15

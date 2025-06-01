@@ -1,0 +1,7 @@
+---
+source: src/math_ops/vec2int16.rs
+expression: "Vector2int16::new(15, 15).modulus(&5f32.into())"
+---
+Vector2int16:
+  - 0
+  - 0

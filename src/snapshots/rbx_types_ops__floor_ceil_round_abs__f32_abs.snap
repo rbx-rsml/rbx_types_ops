@@ -1,0 +1,5 @@
+---
+source: src/floor_ceil_round_abs.rs
+expression: "Variant::from(-5.3f32).abs()"
+---
+Float32: 5.3

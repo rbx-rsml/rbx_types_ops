@@ -1,0 +1,8 @@
+---
+source: src/math_ops/vec3.rs
+expression: "Vector3::new(15.0, 15.0, 15.0).div(&5f32.into())"
+---
+Vector3:
+  - 3
+  - 3
+  - 3

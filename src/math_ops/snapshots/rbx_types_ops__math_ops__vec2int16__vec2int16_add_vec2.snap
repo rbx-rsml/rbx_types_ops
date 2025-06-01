@@ -1,0 +1,7 @@
+---
+source: src/math_ops/vec2int16.rs
+expression: "Vector2int16::new(15, 15).add(&Vector2::new(5.0, 10.0).into())"
+---
+Vector2int16:
+  - 20
+  - 25

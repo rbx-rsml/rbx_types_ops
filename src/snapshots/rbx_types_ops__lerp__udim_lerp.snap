@@ -1,0 +1,7 @@
+---
+source: src/lerp.rs
+expression: "Variant::from(UDim::new(10.0,\n10)).lerp(&Variant::from(UDim::new(20.0, 20)), 0.789)"
+---
+UDim:
+  - 17.89
+  - 17

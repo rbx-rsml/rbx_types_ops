@@ -1,0 +1,8 @@
+---
+source: src/math_ops/vec3.rs
+expression: "Vector3::new(15.0, 15.0, 15.0).add(&Vector3::new(5.0, 10.0, 5.0).into())"
+---
+Vector3:
+  - 20
+  - 25
+  - 20
