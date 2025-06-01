@@ -1,5 +1,5 @@
-use num_traits::Float;
-use rbx_types::{CFrame, Color3, Matrix3, Rect, UDim, UDim2, Vector2, Vector3, Variant};
+use num_traits::{Float, PrimInt};
+use rbx_types::{CFrame, Color3, Color3uint8, Matrix3, Rect, UDim, UDim2, Vector2, Vector3, Variant};
 
 macro_rules! implement_method_for_datatypes {
     ($trait_name:ident, $method_name:ident) => {
@@ -13,7 +13,7 @@ macro_rules! implement_method_for_datatypes {
             fn $method_name(self) -> Self {
                 UDim::new(
                     self.scale.$method_name(),
-                    self.offset
+                    self.offset.$method_name()
                 )
             }
         }
@@ -84,6 +84,16 @@ macro_rules! implement_method_for_datatypes {
             }
         }
 
+        impl $trait_name for Color3uint8 {
+            fn $method_name(self) -> Self {
+                Color3uint8::new(
+                    self.r.$method_name(),
+                    self.g.$method_name(),
+                    self.b.$method_name(),
+                )
+            }
+        }
+
         impl $trait_name for Variant {
             fn $method_name(self) -> Self {
                 match self {
@@ -94,7 +104,8 @@ macro_rules! implement_method_for_datatypes {
                     Variant::CFrame(inner) => Variant::CFrame(inner.$method_name()),
                     Variant::Vector2(inner) => Variant::Vector2(inner.$method_name()),
                     Variant::Rect(inner) => Variant::Rect(inner.$method_name()),
-                    Variant::Color3(inner) =>  Variant::Color3(inner.$method_name()),
+                    Variant::Color3(inner) => Variant::Color3(inner.$method_name()),
+                    Variant::Color3uint8(inner) =>  Variant::Color3uint8(inner.$method_name()),
                     _ => self
                 }
             }
@@ -121,3 +132,27 @@ pub trait Abs {
     fn abs(self) -> Self;
 }
 implement_method_for_datatypes!(Abs, abs);
+
+
+trait UnsignedAbs {
+    fn abs(self) -> Self where Self: PrimInt {
+        self
+    }
+}
+
+trait IntFloorCeilRound {
+    fn floor(self) -> Self where Self: PrimInt {
+        self
+    }
+    fn ceil(self) -> Self where Self: PrimInt {
+        self
+    }
+    fn round(self) -> Self where Self: PrimInt {
+        self
+    }
+}
+
+impl UnsignedAbs for u8 {}
+impl IntFloorCeilRound for u8 {}
+
+impl IntFloorCeilRound for i32 {}

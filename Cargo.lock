@@ -208,7 +208,7 @@ dependencies = [
 
 [[package]]
 name = "rbx_types_ops"
-version = "0.0.8"
+version = "0.0.9"
 dependencies = [
  "insta",
  "num-traits",
